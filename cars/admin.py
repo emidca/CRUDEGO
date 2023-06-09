@@ -1,4 +1,14 @@
 from django.contrib import admin
-from .models import Car
+from .models import Car, Description
 
-admin.site.register(Car)
+
+class DescriptionInline(admin.TabularInline):
+    model = Description
+
+
+class CarAdmin(admin.ModelAdmin):
+    inlines = [DescriptionInline]
+
+
+admin.site.register(Car, CarAdmin)
+admin.site.register(Description)
